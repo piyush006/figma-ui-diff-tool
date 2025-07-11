@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv').config();
 const axios = require('axios');
-const cors = require('cors');
+
 const sharp = require('sharp');
 const { default: pixelmatch } = require('pixelmatch');
 const { PNG } = require('pngjs');
