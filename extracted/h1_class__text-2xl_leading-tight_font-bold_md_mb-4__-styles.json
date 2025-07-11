@@ -1,0 +1,21 @@
+{
+  "tag": "H1",
+  "textContent": "Bespoke Silver Velvet Continental Settee",
+  "placeholder": null,
+  "inputFields": [],
+  "dropdownOptions": [],
+  "fontFamily": "FedraSansScreen, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif",
+  "fontSize": "24px",
+  "fontWeight": "700",
+  "fontWeightName": "bold",
+  "color": "oklch(0.145 0 0)",
+  "backgroundColor": "rgba(0, 0, 0, 0)",
+  "padding": "0px",
+  "margin": "0px 0px 16px",
+  "textAlign": "start",
+  "display": "block",
+  "position": "static",
+  "width": 555,
+  "height": 30,
+  "style": null
+}

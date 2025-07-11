@@ -1,0 +1,25 @@
+{
+  "tag": "HEADER",
+  "textContent": "Search IconLoginNew customer?Sign UpMy ProfileFlipkart Plus ZoneOrdersWishlistRewardsGift CardsLoginLoginCartBecome a SellerNotification Preferences24x7 Customer CareAdvertiseDownload App",
+  "inputFields": [
+    {
+      "type": "text",
+      "name": "q",
+      "placeholder": "Search for Products, Brands and More",
+      "value": ""
+    }
+  ],
+  "dropdownOptions": [],
+  "fontFamily": "inter_regular, fallback-inter_regular, Arial, sans-serif",
+  "fontSize": "12px",
+  "fontWeight": "400",
+  "color": "rgb(0, 0, 0)",
+  "backgroundColor": "rgba(0, 0, 0, 0)",
+  "padding": "12px 28px",
+  "margin": "0px",
+  "textAlign": "start",
+  "display": "flex",
+  "position": "sticky",
+  "width": 1600,
+  "height": 67
+}
