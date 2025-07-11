@@ -12,17 +12,22 @@ const { PNG } = require('pngjs');
 const puppeteer = require('puppeteer');
 
 
-const app = express();
+const express = require('express');
 const cors = require('cors');
+const app = express();
 
 app.use(cors({
-  origin: '*',
+  origin: '*', // OR use your Vercel frontend URL
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type']
 }));
 
-app.options('*', cors());
+app.options('*', cors()); // preflight
+
+// ✅ Ensure body parsing is global, not inline
 app.use(express.json());
+
+// ✅ Keep this for static image preview
 app.use(express.static('uploads'));
 
 const upload = multer({ dest: 'uploads/' });
@@ -140,7 +145,7 @@ async function disableHoverAndCleanup(page, site) {
 
 
 
-app.post('/extract-live-element', express.json(), async (req, res) => {
+app.post('/extract-live-element', async (req, res) => {
   const { selector, url } = req.body;
 
   if (!selector || !url) {
