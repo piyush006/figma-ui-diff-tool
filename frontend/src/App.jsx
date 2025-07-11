@@ -29,10 +29,10 @@ const handleLiveExtract = async () => {
   setIsLoading(true);
 
   try {
-    const res = await axios.post('http://localhost:3001/extract-live-element', {
-      selector: liveSelector,
-      url: 'https://qa-auction.47billion.com/product/bespoke-silver-velvet-continental-settee?id=289713'
-    });
+   const res = await axios.post('https://figma-ui-diff.onrender.com/extract-live-element', {
+  selector: liveSelector,
+  url: 'https://qa-auction.47billion.com'
+});
 
     const { screenshotBase64, computedStyles } = res.data;
 
@@ -68,16 +68,16 @@ const handleUpload = async () => {
   setDiffReport('');
   setDiffImage('');
 
-  try {
-    const res = await axios.post('http://localhost:3001/upload', formData);
-    if (res.data) {
-      setDiffReport(res.data.report);
-      setDiffImage(res.data.diffImage);
-    }
-  } catch (err) {
-    console.error('❌ Frontend Axios error:', err);
-    alert('Error comparing images');
+try {
+  const res = await axios.post('https://figma-ui-diff-tool.onrender.com/upload', formData);
+  if (res.data) {
+    setDiffReport(res.data.report);
+    setDiffImage(res.data.diffImage);
   }
+} catch (err) {
+  console.error('❌ Frontend Axios error:', err);
+  alert('Error comparing images');
+}
 
   setIsLoading(false);
 };
