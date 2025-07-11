@@ -13,24 +13,22 @@ const puppeteer = require('puppeteer');
 
 
 const express = require('express');
-const cors = require('cors');
 const app = express();
 
-app.use(cors({
-  origin: '*', // OR use your Vercel frontend URL
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type']
-}));
+// ✅ FULL CORS block (manual)
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Replace with Vercel URL if needed
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
-app.options('*', cors()); // preflight
-
-// ✅ Ensure body parsing is global, not inline
+// ✅ Body parser
 app.use(express.json());
-
-// ✅ Keep this for static image preview
 app.use(express.static('uploads'));
-
-const upload = multer({ dest: 'uploads/' });
 
 const GEMINI_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
 
