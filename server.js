@@ -15,20 +15,21 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const app = express();
 
-// ✅ FULL CORS block (manual)
+// ✅ Allow ONLY your frontend URL
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Replace with Vercel URL if needed
+  res.setHeader('Access-Control-Allow-Origin', 'https://figma-ui-diff-tool-1.onrender.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
+    return res.sendStatus(200); // Handle preflight
   }
   next();
 });
 
-// ✅ Body parser
-app.use(express.json());
-app.use(express.static('uploads'));
+app.use(express.json());              // ✅ Must be before routes
+app.use(express.static('uploads')); 
+
+const upload = multer({ dest: 'uploads/' });
 
 const GEMINI_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
 
