@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+     "postinstall": "puppeteer install"
   },
   "keywords": ["figma", "ui", "visual-diff", "gemini", "puppeteer"],
   "author": "Piyush Soni",
