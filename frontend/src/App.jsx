@@ -29,7 +29,7 @@ const handleLiveExtract = async () => {
   setIsLoading(true);
 
   try {
-   const res = await axios.post('https://figma-ui-diff.onrender.com/extract-live-element', {
+   const res = await axios.post('https://figma-ui-diff-tool.onrender.com/extract-live-element', {
   selector: liveSelector,
   url: 'https://qa-auction.47billion.com'
 });
