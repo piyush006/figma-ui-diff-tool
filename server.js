@@ -9,7 +9,8 @@ const axios = require('axios');
 const sharp = require('sharp');
 const { default: pixelmatch } = require('pixelmatch');
 const { PNG } = require('pngjs');
-const puppeteer = require('puppeteer');
+const chromium = require('@sparticuz/chromium');
+const puppeteer = require('puppeteer-core');
 
 
 const express = require('express');
@@ -153,23 +154,22 @@ app.post('/extract-live-element', async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-  headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-});
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+      defaultViewport: { width: 1920, height: 1080 },
+    });
+
     const page = await browser.newPage();
-    await page.setViewport({ width: 1920, height: 1080 });
-  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
-// Optional: Escape Tailwind-style class selectors like md:mb-4
-function escapeSelector(selector) {
-  return selector.replace(/:/g, '\\:');
-}
+    // Escape Tailwind-style selectors (e.g., md:mb-4 → md\:mb-4)
+    const escapeSelector = (selector) => selector.replace(/:/g, '\\:');
+    const escapedSelector = escapeSelector(selector);
 
-const escapedSelector = escapeSelector(selector);
+    await page.waitForSelector(escapedSelector, { timeout: 30000 });
 
-await page.waitForSelector(escapedSelector, { timeout: 30000 });
-
-const element = await page.$(escapedSelector);
+    const element = await page.$(escapedSelector);
 
     if (!element) {
       throw new Error('Element not found.');

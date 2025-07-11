@@ -7,13 +7,20 @@
     "start": "node server.js",
     "test": "echo \"No test specified\" && exit 0"
   },
-  "keywords": ["figma", "ui", "visual-diff", "gemini", "puppeteer"],
+  "keywords": [
+    "figma",
+    "ui",
+    "visual-diff",
+    "gemini",
+    "puppeteer"
+  ],
   "author": "Piyush Soni",
   "license": "MIT",
   "engines": {
     "node": "20.x"
   },
   "dependencies": {
+    "@sparticuz/chromium": "^138.0.0",
     "axios": "^1.10.0",
     "cors": "^2.8.5",
     "dotenv": "^17.0.0",
@@ -22,7 +29,7 @@
     "openai": "^5.8.2",
     "pixelmatch": "^7.1.0",
     "pngjs": "^7.0.0",
-    "puppeteer": "^24.12.1",
+    "puppeteer-core": "^24.12.1",
     "sharp": "^0.34.2"
   }
 }
