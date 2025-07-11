@@ -13,7 +13,15 @@ const puppeteer = require('puppeteer');
 
 
 const app = express();
-app.use(cors());
+const cors = require('cors');
+
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+app.options('*', cors());
 app.use(express.static('uploads'));
 
 const upload = multer({ dest: 'uploads/' });
