@@ -263,7 +263,12 @@ await browser.close();
 
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
+if (!PORT) throw new Error("🚨 Railway did not set PORT env variable");
+
+app.get('/', (req, res) => {
+  res.send('Hello from Railway!');
+});
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
